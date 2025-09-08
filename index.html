@@ -1,10 +1,53 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta http-equiv="refresh" content="0; url=Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf" />
-    <title>Redirecting...</title>
-  </head>
-  <body>
-    <p>If you are not redirected, <a href="Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf">click here</a>.</p>
-  </body>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Selecciona un PDF</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;padding:1.25rem;background:#f6f7fb;color:#111}
+    h1{font-size:1.25rem;margin:0 0 1rem}
+    .chooser{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem}
+    .btn{
+      padding:.6rem 1rem;border-radius:.5rem;border:1px solid #cbd5e1;background:white;
+      cursor:pointer;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.03);
+    }
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{background:#0b6efd;color:white;border-color:#0b6efd}
+    #viewer{width:100%;height:72vh;border:1px solid #ddd;background:white}
+    @media (max-width:640px){
+      #viewer{height:60vh}
+    }
+  </style>
+</head>
+<body>
+  <h1>Selecciona un PDF para ver</h1>
+
+  <div class="chooser">
+    <button class="btn btn-primary" onclick="showPDF('Montaje_PLD.pdf')">Montaje PLD</button>
+    <button class="btn" onclick="showPDF('Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf')">
+      Análisis Vibracional y Rotacional del Hidrógeno Diatómico
+    </button>
+    <a class="btn" href="Montaje_PLD.pdf" target="_blank" rel="noopener">Abrir Montaje PLD (nueva pestaña)</a>
+    <a class="btn" href="Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf" target="_blank" rel="noopener">
+      Abrir Análisis Vibracional (nueva pestaña)
+    </a>
+  </div>
+
+  <iframe id="viewer" title="PDF viewer" src="Montaje_PLD.pdf"></iframe>
+
+  <script>
+    function showPDF(filename){
+      if(typeof filename !== 'string') return;
+      document.getElementById('viewer').src = filename;
+      location.hash = encodeURIComponent(filename);
+    }
+
+    // Carga un PDF según el hash en la URL (#filename.pdf)
+    (function(){
+      const h = decodeURIComponent((location.hash||'').slice(1));
+      if(h) document.getElementById('viewer').src = h;
+    })();
+  </script>
+</body>
 </html>
