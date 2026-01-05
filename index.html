@@ -3,49 +3,197 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Repositorio Académico</title>
+  <title>Repositorio Académico — Ian Grosssan</title>
+
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;padding:1.25rem;background:#f6f7fb;color:#111}
-    h1{font-size:1.25rem;margin:0 0 1rem}
-    .chooser{display:flex;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem}
-    .btn{
-      padding:.6rem 1rem;border-radius:.5rem;border:1px solid #cbd5e1;background:white;
-      cursor:pointer;font-weight:600;box-shadow:0 1px 2px rgba(0,0,0,.03);
+    :root{
+      --bg:#f6f7fb;
+      --panel:#ffffff;
+      --ink:#0f172a;
+      --muted:#475569;
+      --accent:#0b6efd;
+      --border:#e2e8f0;
     }
-    .btn:active{transform:translateY(1px)}
-    .btn-primary{background:#0b6efd;color:white;border-color:#0b6efd}
-    #viewer{width:100%;height:72vh;border:1px solid #ddd;background:white}
-    @media (max-width:640px){
-      #viewer{height:60vh}
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      background:var(--bg);
+      color:var(--ink);
+    }
+
+    .page{
+      max-width:1100px;
+      margin:0 auto;
+      padding:2.5rem 1.25rem;
+    }
+
+    header{
+      margin-bottom:2rem;
+    }
+
+    h1{
+      font-size:2rem;
+      margin:0;
+      letter-spacing:-0.02em;
+    }
+
+    .lead{
+      margin-top:.5rem;
+      max-width:60ch;
+      color:var(--muted);
+      font-size:1.05rem;
+    }
+
+    .author{
+      margin-top:.75rem;
+      font-size:.9rem;
+      color:var(--muted);
+    }
+
+    .layout{
+      display:grid;
+      grid-template-columns:260px 1fr;
+      gap:1.5rem;
+    }
+
+    nav{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:.75rem;
+      padding:1rem;
+    }
+
+    nav h2{
+      font-size:.85rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--muted);
+      margin:0 0 .75rem;
+    }
+
+    .nav-item{
+      display:block;
+      width:100%;
+      text-align:left;
+      padding:.6rem .7rem;
+      margin-bottom:.25rem;
+      background:none;
+      border:none;
+      border-radius:.5rem;
+      font-size:.95rem;
+      cursor:pointer;
+      color:var(--ink);
+    }
+
+    .nav-item:hover{
+      background:#f1f5f9;
+    }
+
+    .nav-item.active{
+      background:#e7efff;
+      color:var(--accent);
+      font-weight:600;
+    }
+
+    main{
+      background:var(--panel);
+      border:1px solid var(--border);
+      border-radius:.75rem;
+      padding:1rem;
+    }
+
+    iframe{
+      width:100%;
+      height:72vh;
+      border:none;
+      border-radius:.5rem;
+    }
+
+    footer{
+      margin-top:2rem;
+      font-size:.8rem;
+      color:var(--muted);
+      text-align:center;
+    }
+
+    @media (max-width:900px){
+      .layout{
+        grid-template-columns:1fr;
+      }
+      iframe{
+        height:60vh;
+      }
     }
   </style>
 </head>
-<body>
-  <h1>Proyectos Académicos</h1>
 
-  <div class="chooser">
-    <button class="btn btn-primary" onclick="showPDF('Montaje_PLD.pdf')">Montaje PLD</button>
-    <button class="btn" onclick="showPDF('Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf')">
-      Análisis Vibracional y Rotacional del Hidrógeno Diatómico
-    </button>
-    <button class="btn btn-primary" onclick="showPDF('Chasis_CubeSat.pdf')">Chasis CubeSat</button>
-    <button class="btn btn-primary" onclick="showPDF('Simulacion_Chasis_CubeSat.pdf')">Simulación Mecánica Chasis CubeSat (Simcenter)</button>
+<body>
+  <div class="page">
+
+    <header>
+      <h1>Repositorio Académico</h1>
+      <p class="lead">
+        Selección de proyectos, reportes técnicos y simulaciones desarrolladas
+        en el marco de formación académica e investigación aplicada.
+      </p>
+      <div class="author">
+        Ian Grosssan — Ingeniería Mecánica · Física · Simulación
+      </div>
+    </header>
+
+    <section class="layout">
+      <nav>
+        <h2>Documentos</h2>
+        <button class="nav-item active" onclick="showPDF(this,'Montaje_PLD.pdf')">
+          Montaje PLD
+        </button>
+        <button class="nav-item" onclick="showPDF(this,'Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf')">
+          Análisis Vibracional y Rotacional del Hidrógeno Diatómico
+        </button>
+        <button class="nav-item" onclick="showPDF(this,'Chasis_CubeSat.pdf')">
+          Chasis CubeSat
+        </button>
+        <button class="nav-item" onclick="showPDF(this,'Simulacion_Chasis_CubeSat.pdf')">
+          Simulación Mecánica Chasis CubeSat (Simcenter)
+        </button>
+      </nav>
+
+      <main>
+        <iframe id="viewer" src="Montaje_PLD.pdf" title="Visualizador de PDF"></iframe>
+      </main>
+    </section>
+
+    <footer>
+      © Ian Grosssan — Repositorio académico personal
+    </footer>
+
   </div>
 
-  <iframe id="viewer" title="PDF viewer" src="Montaje_PLD.pdf"></iframe>
-
   <script>
-    function showPDF(filename){
-      if(typeof filename !== 'string') return;
+    function showPDF(btn, filename){
       document.getElementById('viewer').src = filename;
+      document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
+      btn.classList.add('active');
       location.hash = encodeURIComponent(filename);
     }
 
-    // Carga un PDF según el hash en la URL (#filename.pdf)
     (function(){
       const h = decodeURIComponent((location.hash||'').slice(1));
-      if(h) document.getElementById('viewer').src = h;
+      if(!h) return;
+      const buttons = document.querySelectorAll('.nav-item');
+      buttons.forEach(b=>{
+        if(b.onclick.toString().includes(h)){
+          b.classList.add('active');
+          document.getElementById('viewer').src = h;
+        } else {
+          b.classList.remove('active');
+        }
+      });
     })();
   </script>
+
 </body>
 </html>
