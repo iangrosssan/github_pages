@@ -15,7 +15,7 @@
       --border:#e2e8f0;
     }
 
-    *{box-sizing:border-box}
+    *{ box-sizing:border-box }
 
     body{
       margin:0;
@@ -30,9 +30,7 @@
       padding:2.5rem 1.25rem;
     }
 
-    header{
-      margin-bottom:2rem;
-    }
+    header{ margin-bottom:2rem }
 
     h1{
       font-size:2rem;
@@ -67,7 +65,7 @@
     }
 
     nav h2{
-      font-size:.85rem;
+      font-size:.8rem;
       text-transform:uppercase;
       letter-spacing:.08em;
       color:var(--muted);
@@ -88,14 +86,50 @@
       color:var(--ink);
     }
 
-    .nav-item:hover{
-      background:#f1f5f9;
-    }
+    .nav-item:hover{ background:#f1f5f9 }
 
     .nav-item.active{
       background:#e7efff;
       color:var(--accent);
       font-weight:600;
+    }
+
+    .tag{
+      display:inline-block;
+      margin-left:.4rem;
+      padding:.15rem .45rem;
+      font-size:.65rem;
+      font-weight:600;
+      letter-spacing:.05em;
+      text-transform:uppercase;
+      border-radius:.35rem;
+      background:#f1f5f9;
+      color:var(--muted);
+    }
+
+    .doc-summary{
+      margin-top:1rem;
+      padding-top:.75rem;
+      border-top:1px solid var(--border);
+      font-size:.85rem;
+      color:var(--muted);
+    }
+
+    .doc-summary strong{
+      display:block;
+      font-size:.7rem;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      margin-bottom:.35rem;
+      color:#64748b;
+    }
+
+    .doc-summary em{
+      display:block;
+      font-style:normal;
+      font-weight:600;
+      color:var(--ink);
+      margin-bottom:.25rem;
     }
 
     main{
@@ -120,80 +154,120 @@
     }
 
     @media (max-width:900px){
-      .layout{
-        grid-template-columns:1fr;
-      }
-      iframe{
-        height:60vh;
-      }
+      .layout{ grid-template-columns:1fr }
+      iframe{ height:60vh }
     }
   </style>
 </head>
 
 <body>
-  <div class="page">
+<div class="page">
 
-    <header>
-      <h1>Repositorio Académico</h1>
-      <p class="lead">
-        Selección de proyectos, reportes técnicos y simulaciones desarrolladas
-        en el marco de formación académica e investigación aplicada.
-      </p>
-      <div class="author">
-        Ian Gross Sánchez — Ingeniero Civil Mecánico · Ingeniero Físico · Matemático Aplicado
+  <header>
+    <h1>Repositorio Académico</h1>
+    <p class="lead">
+      Selección de proyectos, reportes técnicos y simulaciones desarrolladas
+      en el marco de formación académica e investigación aplicada.
+    </p>
+    <div class="author">
+      Ian Gross Sánchez — Ingeniero Civil Mecánico · Ingeniero Físico · Matemático Aplicado
+    </div>
+  </header>
+
+  <section class="layout">
+
+    <nav>
+      <h2>Documentos</h2>
+
+      <button class="nav-item active" onclick="showPDF(this,'Montaje_PLD.pdf')">
+        Montaje PLD <span class="tag">Experimental</span>
+      </button>
+
+      <button class="nav-item" onclick="showPDF(this,'Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf')">
+        Análisis Vibracional y Rotacional del Hidrógeno Diatómico
+        <span class="tag">Orca</span><span class="tag">Teórico</span>
+      </button>
+
+      <button class="nav-item" onclick="showPDF(this,'Chasis_CubeSat.pdf')">
+        Chasis CubeSat <span class="tag">Diseño mecánico</span>
+      </button>
+
+      <button class="nav-item" onclick="showPDF(this,'Simulacion_Chasis_CubeSat.pdf')">
+        Simulación Mecánica Chasis CubeSat <span class="tag">Simcenter</span>
+      </button>
+
+      <!-- BLOQUE ÚNICO DE RESUMEN -->
+      <div class="doc-summary" id="doc-summary">
+        <strong>Documento seleccionado</strong>
+        <em id="doc-title">Montaje PLD</em>
+        <span id="doc-text">
+          Configuración experimental de un sistema de deposición por láser pulsado,
+          incluyendo alineación óptica, control de parámetros y montaje del reactor.
+        </span>
       </div>
-    </header>
+    </nav>
 
-    <section class="layout">
-      <nav>
-        <h2>Documentos</h2>
-        <button class="nav-item active" onclick="showPDF(this,'Montaje_PLD.pdf')">
-          Montaje PLD
-        </button>
-        <button class="nav-item" onclick="showPDF(this,'Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf')">
-          Análisis Vibracional y Rotacional del Hidrógeno Diatómico
-        </button>
-        <button class="nav-item" onclick="showPDF(this,'Chasis_CubeSat.pdf')">
-          Chasis CubeSat
-        </button>
-        <button class="nav-item" onclick="showPDF(this,'Simulacion_Chasis_CubeSat.pdf')">
-          Simulación Mecánica Chasis CubeSat (Simcenter)
-        </button>
-      </nav>
+    <main>
+      <iframe id="viewer" src="Montaje_PLD.pdf" title="Visualizador de PDF"></iframe>
+    </main>
 
-      <main>
-        <iframe id="viewer" src="Montaje_PLD.pdf" title="Visualizador de PDF"></iframe>
-      </main>
-    </section>
+  </section>
 
-    <footer>
-      © Ian Gross Sánchez — Repositorio académico personal
-    </footer>
+  <footer>
+    © Ian Gross Sánchez — Repositorio académico personal
+  </footer>
 
-  </div>
+</div>
 
-  <script>
-    function showPDF(btn, filename){
-      document.getElementById('viewer').src = filename;
-      document.querySelectorAll('.nav-item').forEach(b=>b.classList.remove('active'));
-      btn.classList.add('active');
-      location.hash = encodeURIComponent(filename);
+<script>
+  const summaries = {
+    "Montaje_PLD.pdf": {
+      title: "Montaje PLD",
+      text: "Configuración experimental de un sistema de deposición por láser pulsado, incluyendo alineación óptica, control de parámetros y montaje del reactor."
+    },
+    "Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf": {
+      title: "Análisis Vibracional y Rotacional del Hidrógeno Diatómico",
+      text: "Estudio teórico–computacional de los niveles de energía vibracionales y rotacionales del H₂ mediante modelos cuánticos y cálculos ab initio."
+    },
+    "Chasis_CubeSat.pdf": {
+      title: "Chasis CubeSat",
+      text: "Diseño mecánico del chasis considerando restricciones de masa, volumen y compatibilidad estructural con estándares CubeSat."
+    },
+    "Simulacion_Chasis_CubeSat.pdf": {
+      title: "Simulación Mecánica Chasis CubeSat",
+      text: "Análisis estructural bajo cargas cuasi-estáticas y condiciones de lanzamiento utilizando Simcenter 3D."
+    }
+  };
+
+  function showPDF(btn, filename){
+    document.getElementById('viewer').src = filename;
+
+    document.querySelectorAll('.nav-item')
+      .forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const s = summaries[filename];
+    if(s){
+      document.getElementById('doc-title').textContent = s.title;
+      document.getElementById('doc-text').textContent = s.text;
     }
 
-    (function(){
-      const h = decodeURIComponent((location.hash||'').slice(1));
-      if(!h) return;
-      const buttons = document.querySelectorAll('.nav-item');
-      buttons.forEach(b=>{
-        if(b.onclick.toString().includes(h)){
-          b.classList.add('active');
-          document.getElementById('viewer').src = h;
-        } else {
-          b.classList.remove('active');
-        }
-      });
-    })();
-  </script>
+    location.hash = encodeURIComponent(filename);
+  }
+
+  (function(){
+    const h = decodeURIComponent((location.hash || '').slice(1));
+    if(!h || !summaries[h]) return;
+
+    document.getElementById('viewer').src = h;
+    document.getElementById('doc-title').textContent = summaries[h].title;
+    document.getElementById('doc-text').textContent = summaries[h].text;
+
+    document.querySelectorAll('.nav-item').forEach(b=>{
+      if(b.onclick.toString().includes(h)) b.classList.add('active');
+    });
+  })();
+</script>
 
 </body>
 </html>
