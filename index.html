@@ -196,15 +196,18 @@
         Simulación Mecánica Chasis CubeSat <span class="tag">Simcenter</span>
       </button>
 
+      <button class="nav-item" onclick="showPDF(this,'Prediccion_Afinacion_de_Parches_de_Tambor.pdf')">
+        Afinación de Parche de Tambor <span class="tag">Machine Learning</span><span class="tag">Python</span><span class="tag">TensorFlow</span>
+      </button>
+
       <!-- BLOQUE ÚNICO DE RESUMEN -->
       <div class="doc-summary" id="doc-summary">
         <strong>Documento seleccionado</strong>
         <em id="doc-title">Montaje PLD</em>
         <span id="doc-text">
-          Montaje experimental de Pulsed Laser Deposition (PLD) para la síntesis de películas delgadas ferromagnéticas.
-          Se realizó la alineación y caracterización operativa del láser infrarrojo, junto con la puesta en funcionamiento de la cámara de vacío.
-          Se llevó a cabo una deposición preliminar de YIG sobre sustratos sólidos.
-          La película obtenida presentó respuesta magnética, verificada mediante mediciones MOKE.
+          Montaje experimental Pulsed Laser Deposition para la síntesis de películas delgadas ferromagnéticas.
+          Se realizó la alineación y caracterización de láser infrarrojo, junto con la puesta en funcionamiento de una cámara de vacío.
+          Se llevó a cabo una deposición preliminar de YIG sobre sustratos sólidos con respuesta magnética, verificada mediante mediciones MOKE.
         </span>
       </div>
     </nav>
@@ -239,6 +242,10 @@
       title: "Simulación Mecánica Chasis CubeSat",
       text: "Análisis estructural de un chasis CubeSat 3U considerando aceleraciones lineales, expansión térmica y respuesta vibracional, incluyendo vibraciones inducidas por el lanzamiento y excitaciones aleatorias representativas del entorno dinámico del cohete. Los resultados validan la integridad mecánica bajo condiciones operacionales realistas."
     }
+    "Prediccion_Afinacion_de_Parches_de_Tambor.pdf": {
+      title: "Afinación de Parche de Tambor",
+      text: "Desarrollo de un modelo de red neuronal que relaciona la tensión de los pernos de afinación con el perfil acústico de un tambor. Se estudia un floor tom con un parche superior uniformemente tenso, estableciendo la base para un sistema de afinación de batería."
+    },
   };
 
   function showPDF(btn, filename){
