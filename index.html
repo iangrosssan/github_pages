@@ -180,24 +180,37 @@
       <h2>Documentos</h2>
 
       <button class="nav-item active" onclick="showPDF(this,'Montaje_PLD.pdf')">
-        Montaje PLD <span class="tag">Experimental</span>
+        Montaje de Sistema PLD
+        <span class="tag">Experimental</span>
+        <span class="tag">Óptica</span>
+        <span class="tag">Ferromagnético</span>
       </button>
 
       <button class="nav-item" onclick="showPDF(this,'Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf')">
         Análisis Vibracional y Rotacional del Hidrógeno Diatómico
-        <span class="tag">Orca</span><span class="tag">Teórico</span>
+        <span class="tag">Teórico</span>
+        <span class="tag">Orca</span>
+        <span class="tag">DFT</span>
       </button>
 
       <button class="nav-item" onclick="showPDF(this,'Chasis_CubeSat.pdf')">
-        Chasis CubeSat <span class="tag">Diseño mecánico</span>
+        Diseño de Chasis para CubeSat 3U
+        <span class="tag">Aeroespacial</span>
+        <span class="tag">Optimización</span>
       </button>
 
       <button class="nav-item" onclick="showPDF(this,'Simulacion_Chasis_CubeSat.pdf')">
-        Simulación Mecánica Chasis CubeSat <span class="tag">Simcenter</span>
+        Simulación Mecánica Chasis CubeSat
+        <span class="tag">Estructural</span>
+        <span class="tag">CAE</span>
+        <span class="tag">Simcenter 3D</span>
       </button>
 
       <button class="nav-item" onclick="showPDF(this,'Prediccion_Afinacion_de_Parches_de_Tambor.pdf')">
-        Afinación de Parche de Tambor <span class="tag">Machine Learning</span><span class="tag">Python</span><span class="tag">TensorFlow</span>
+        Afinación de Parche de Tambor
+        <span class="tag">Acústica</span>
+        <span class="tag">Machine Learning</span>
+        <span class="tag">TensorFlow</span>
       </button>
 
       <!-- BLOQUE ÚNICO DE RESUMEN -->
@@ -227,7 +240,7 @@
 <script>
   const summaries = {
     "Montaje_PLD.pdf": {
-      title: "Montaje PLD",
+      title: "Montaje de Sistema PLD",
       text: "Montaje experimental Pulsed Laser Deposition para la síntesis de películas delgadas ferromagnéticas. Se realizó la alineación y caracterización de láser infrarrojo, junto con la puesta en funcionamiento de una cámara de vacío. Se llevó a cabo una deposición preliminar de YIG sobre sustratos sólidos con respuesta magnética, verificada mediante mediciones MOKE."
     },
     "Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf": {
@@ -235,7 +248,7 @@
       text: "Modelo de enlace para la molécula de hidrógeno mediante simulaciones de Density Functional Theory basados en mecánica cuántica. Se describen los estados de vibración y rotación, mostrando buena concordancia con la literatura y destacando su utilidad como marco introductorio para sistemas moleculares simples."
     },
     "Chasis_CubeSat.pdf": {
-      title: "Chasis CubeSat",
+      title: "Diseño de Chasis para CubeSat 3U",
       text: "Diseño estructural de un chasis CubeSat 3U mediante optimización topológica y fabricado mediante manufactura aditiva Selective Laser Melting. Compatible con estándares internacionales de lanzamiento, sistemas deployer y condiciones de operación en ambiente orbital."
     },
     "Simulacion_Chasis_CubeSat.pdf": {
