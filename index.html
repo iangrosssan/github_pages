@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Selecciona un PDF</title>
+  <title>Repositorio Académico</title>
   <style>
     body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;padding:1.25rem;background:#f6f7fb;color:#111}
     h1{font-size:1.25rem;margin:0 0 1rem}
@@ -21,17 +21,15 @@
   </style>
 </head>
 <body>
-  <h1>Selecciona un PDF para ver</h1>
+  <h1>Proyectos Académicos</h1>
 
   <div class="chooser">
     <button class="btn btn-primary" onclick="showPDF('Montaje_PLD.pdf')">Montaje PLD</button>
     <button class="btn" onclick="showPDF('Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf')">
       Análisis Vibracional y Rotacional del Hidrógeno Diatómico
     </button>
-    <a class="btn" href="Montaje_PLD.pdf" target="_blank" rel="noopener">Abrir Montaje PLD (nueva pestaña)</a>
-    <a class="btn" href="Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf" target="_blank" rel="noopener">
-      Abrir Análisis Vibracional (nueva pestaña)
-    </a>
+    <button class="btn btn-primary" onclick="showPDF('Chasis_CubeSat.pdf')">Chasis CubeSat</button>
+    <button class="btn btn-primary" onclick="showPDF('Simulación_Simcenter.pdf')">Simulación Mecánica Chasis CubeSat</button>
   </div>
 
   <iframe id="viewer" title="PDF viewer" src="Montaje_PLD.pdf"></iframe>
