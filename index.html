@@ -1,294 +1,345 @@
 <!doctype html>
 <html lang="es">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Repositorio Académico — Ian Gross Sánchez</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Portafolio — Ian Gross Sánchez</title>
+    <style>
+        :root {
+            --bg: #f6f7fb;
+            --panel: #ffffff;
+            --ink: #0f172a;
+            --muted: #475569;
+            --accent: #0b6efd;
+            --border: #e2e8f0;
+        }
 
-  <style>
-    :root{
-      --bg:#f6f7fb;
-      --panel:#ffffff;
-      --ink:#0f172a;
-      --muted:#475569;
-      --accent:#0b6efd;
-      --border:#e2e8f0;
-    }
+        * {
+            box-sizing: border-box
+        }
 
-    *{ box-sizing:border-box }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+            background: var(--bg);
+            color: var(--ink);
+        }
 
-    body{
-      margin:0;
-      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;
-      background:var(--bg);
-      color:var(--ink);
-    }
+        .page {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 2.5rem 1.25rem;
+        }
 
-    .page{
-      max-width:1100px;
-      margin:0 auto;
-      padding:2.5rem 1.25rem;
-    }
+        header {
+            margin-bottom: 2rem;
+        }
 
-    header{ margin-bottom:2rem }
+        h1 {
+            font-size: 2rem;
+            margin: 0;
+            letter-spacing: -0.02em;
+        }
 
-    h1{
-      font-size:2rem;
-      margin:0;
-      letter-spacing:-0.02em;
-    }
+        .lead {
+            margin-top: .5rem;
+            max-width: 60ch;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
 
-    .lead{
-      margin-top:.5rem;
-      max-width:60ch;
-      color:var(--muted);
-      font-size:1.05rem;
-    }
+        .author {
+            margin-top: .75rem;
+            font-size: .9rem;
+            color: var(--muted);
+        }
 
-    .author{
-      margin-top:.75rem;
-      font-size:.9rem;
-      color:var(--muted);
-    }
+        .layout {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 1.5rem;
+        }
 
-    .layout{
-      display:grid;
-      grid-template-columns:260px 1fr;
-      gap:1.5rem;
-    }
+        nav {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: .75rem;
+            padding: 1rem;
+        }
 
-    nav{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:.75rem;
-      padding:1rem;
-    }
+        nav h2 {
+            font-size: .8rem;
+            text-transform: uppercase;
+            letter-spacing: .08em;
+            color: var(--muted);
+            margin: 0 0 .75rem;
+        }
 
-    nav h2{
-      font-size:.8rem;
-      text-transform:uppercase;
-      letter-spacing:.08em;
-      color:var(--muted);
-      margin:0 0 .75rem;
-    }
+        .section-item {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: .6rem .7rem;
+            margin-bottom: .25rem;
+            background: none;
+            border: none;
+            border-radius: .5rem;
+            font-size: .95rem;
+            cursor: pointer;
+            color: var(--ink);
+        }
 
-    .nav-item{
-      display:block;
-      width:100%;
-      text-align:left;
-      padding:.6rem .7rem;
-      margin-bottom:.25rem;
-      background:none;
-      border:none;
-      border-radius:.5rem;
-      font-size:.95rem;
-      cursor:pointer;
-      color:var(--ink);
-    }
+        .section-item:hover {
+            background: #f1f5f9;
+        }
 
-    .nav-item:hover{ background:#f1f5f9 }
+        .section-item.active {
+            background: #e7efff;
+            color: var(--accent);
+            font-weight: 600;
+        }
 
-    .nav-item.active{
-      background:#e7efff;
-      color:var(--accent);
-      font-weight:600;
-    }
+        .subnav {
+            margin-top: .5rem;
+            margin-left: .5rem;
+        }
 
-    .tag{
-      display:inline-block;
-      margin-left:.4rem;
-      padding:.15rem .45rem;
-      font-size:.65rem;
-      font-weight:600;
-      letter-spacing:.05em;
-      text-transform:uppercase;
-      border-radius:.35rem;
-      background:#f1f5f9;
-      color:var(--muted);
-    }
+        .nav-item {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: .4rem .7rem;
+            margin-bottom: .25rem;
+            background: none;
+            border: none;
+            border-radius: .5rem;
+            font-size: .9rem;
+            cursor: pointer;
+            color: var(--ink);
+        }
 
-    .doc-summary{
-      margin-top:1rem;
-      padding-top:.75rem;
-      border-top:1px solid var(--border);
-      font-size:.85rem;
-      color:var(--muted);
-    }
+        .nav-item:hover {
+            background: #f1f5f9;
+        }
 
-    .doc-summary strong{
-      display:block;
-      font-size:.7rem;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      margin-bottom:.35rem;
-      color:var(--accent);
-    }
+        .nav-item.active {
+            background: #e7efff;
+            color: var(--accent);
+            font-weight: 600;
+        }
 
-    .doc-summary em{
-      display:block;
-      font-style:normal;
-      font-weight:600;
-      color:var(--ink);
-      margin-bottom:.25rem;
-    }
+        .tag {
+            display: inline-block;
+            margin-left: .4rem;
+            padding: .15rem .45rem;
+            font-size: .65rem;
+            font-weight: 600;
+            letter-spacing: .05em;
+            text-transform: uppercase;
+            border-radius: .35rem;
+            background: #f1f5f9;
+            color: var(--muted);
+        }
 
-    main{
-      background:var(--panel);
-      border:1px solid var(--border);
-      border-radius:.75rem;
-      padding:1rem;
-    }
+        .doc-summary {
+            margin-top: 1rem;
+            padding-top: .75rem;
+            border-top: 1px solid var(--border);
+            font-size: .85rem;
+            color: var(--accent);
+        }
 
-    iframe{
-      width:100%;
-      height:72vh;
-      border:none;
-      border-radius:.5rem;
-    }
+        /* resaltar azul */
+        .doc-summary strong {
+            display: block;
+            font-size: .7rem;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            margin-bottom: .35rem;
+            color: #64748b;
+        }
 
-    footer{
-      margin-top:2rem;
-      font-size:.8rem;
-      color:var(--muted);
-      text-align:center;
-    }
+        .doc-summary em {
+            display: block;
+            font-style: normal;
+            font-weight: 600;
+            color: var(--accent);
+            margin-bottom: .25rem;
+        }
 
-    @media (max-width:900px){
-      .layout{ grid-template-columns:1fr }
-      iframe{ height:60vh }
-    }
-  </style>
+        main {
+            background: var(--panel);
+            border: 1px solid var(--border);
+            border-radius: .75rem;
+            padding: 1rem;
+        }
+
+        iframe {
+            width: 100%;
+            height: 72vh;
+            border: none;
+            border-radius: .5rem;
+        }
+
+        footer {
+            margin-top: 2rem;
+            font-size: .8rem;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        @media (max-width:900px) {
+            .layout {
+                grid-template-columns: 1fr
+            }
+
+            iframe {
+                height: 60vh
+            }
+        }
+    </style>
 </head>
 
 <body>
+
 <div class="page">
 
-  <header>
-    <h1>Repositorio Académico</h1>
-    <p class="lead">
-      Selección de proyectos, reportes técnicos y simulaciones.
-    </p>
-    <div class="author">
-      Ian Gross Sánchez — Ingeniero Civil Mecánico · Ingeniero Físico · Matemático Aplicado
-    </div>
-  </header>
+    <header>
+        <h1>Portafolio</h1>
+        <p class="lead">Colección de proyectos académicos y repositorios de código.</p>
+        <div class="author">Ian Gross Sánchez — Ingeniero Civil Mecánico · Ingeniero Físico · Matemático Aplicado</div>
+    </header>
 
-  <section class="layout">
+    <section class="layout">
 
-    <nav>
-      <h2>Documentos</h2>
+        <!-- Secciones del Portafolio -->
+        <div style="display:flex; gap:1rem; margin-bottom:1rem;">
+            <button class="section-item active" onclick="showSection('academico')">Repositorio Académico</button>
+            <button class="section-item" onclick="showSection('codigo')">Repositorio de Código</button>
+        </div>
 
-      <button class="nav-item active" onclick="showPDF(this,'Montaje_PLD.pdf')">
-        Montaje de Sistema PLD
-        <span class="tag">Experimental</span>
-        <span class="tag">Óptica</span>
-        <span class="tag">Ferromagnético</span>
-      </button>
+        <nav>
+            <!-- Submenú Repositorio Académico -->
+            <div id="academico" class="subnav">
+                <button class="nav-item active" onclick="showPDF(this,'Montaje_PLD.pdf')">
+                    Montaje de Sistema PLD
+                    <span class="tag">Experimental</span>
+                    <span class="tag">Óptica</span>
+                    <span class="tag">Ferromagnético</span>
+                </button>
+                <button class="nav-item" onclick="showPDF(this,'Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf')">
+                    Análisis Vibracional y Rotacional del Hidrógeno Diatómico
+                    <span class="tag">Molecular</span>
+                    <span class="tag">Orca</span>
+                    <span class="tag">DFT</span>
+                </button>
+                <button class="nav-item" onclick="showPDF(this,'Chasis_CubeSat.pdf')">
+                    Diseño de Chasis para CubeSat 3U
+                    <span class="tag">Aeroespacial</span>
+                    <span class="tag">Optimización</span>
+                </button>
+                <button class="nav-item" onclick="showPDF(this,'Simulacion_Chasis_CubeSat.pdf')">
+                    Simulación Mecánica Chasis CubeSat
+                    <span class="tag">Estructural</span>
+                    <span class="tag">CAE</span>
+                    <span class="tag">Simcenter 3D</span>
+                </button>
+                <button class="nav-item" onclick="showPDF(this,'Prediccion_Afinacion_de_Parches_de_Tambor.pdf')">
+                    Afinación de Parche de Tambor
+                    <span class="tag">Acústica</span>
+                    <span class="tag">Machine Learning</span>
+                    <span class="tag">TensorFlow</span>
+                </button>
+            </div>
 
-      <button class="nav-item" onclick="showPDF(this,'Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf')">
-        Análisis Vibracional y Rotacional del Hidrógeno Diatómico
-        <span class="tag">Molecular</span>
-        <span class="tag">Orca</span>
-        <span class="tag">DFT</span>
-      </button>
+            <!-- Submenú Repositorio de Código -->
+            <div id="codigo" class="subnav" style="display:none;">
+                <button class="nav-item" onclick="showCode('Repo1')">Spotify Sorter</button>
+                <button class="nav-item" onclick="showCode('Repo2')">Herramientas de Mecánico</button>
+                <button class="nav-item" onclick="showCode('Repo3')">Montaje Controlador PLD</button>
+            </div>
 
-      <button class="nav-item" onclick="showPDF(this,'Chasis_CubeSat.pdf')">
-        Diseño de Chasis para CubeSat 3U
-        <span class="tag">Aeroespacial</span>
-        <span class="tag">Optimización</span>
-      </button>
+            <!-- Bloque único de Resumen -->
+            <div class="doc-summary" id="doc-summary">
+                <strong>Resumen Documento</strong>
+                <em id="doc-title">Montaje PLD</em>
+                <span id="doc-text">Montaje experimental Pulsed Laser Deposition para la síntesis de películas delgadas ferromagnéticas...</span>
+            </div>
+        </nav>
 
-      <button class="nav-item" onclick="showPDF(this,'Simulacion_Chasis_CubeSat.pdf')">
-        Simulación Mecánica Chasis CubeSat
-        <span class="tag">Estructural</span>
-        <span class="tag">CAE</span>
-        <span class="tag">Simcenter 3D</span>
-      </button>
+        <main>
+            <iframe id="viewer" src="Montaje_PLD.pdf" title="Visualizador de PDF"></iframe>
+        </main>
 
-      <button class="nav-item" onclick="showPDF(this,'Prediccion_Afinacion_de_Parches_de_Tambor.pdf')">
-        Afinación de Parche de Tambor
-        <span class="tag">Acústica</span>
-        <span class="tag">Machine Learning</span>
-        <span class="tag">TensorFlow</span>
-      </button>
+    </section>
 
-      <!-- BLOQUE ÚNICO DE RESUMEN -->
-      <div class="doc-summary" id="doc-summary">
-        <strong>Resumen Documento</strong>
-        <em id="doc-title">Montaje PLD</em>
-        <span id="doc-text">
-          Montaje experimental Pulsed Laser Deposition para la síntesis de películas delgadas ferromagnéticas.
-          Se realizó la alineación y caracterización de láser infrarrojo, junto con la puesta en funcionamiento de una cámara de vacío.
-          Se llevó a cabo una deposición preliminar de YIG sobre sustratos sólidos con respuesta magnética, verificada mediante mediciones MOKE.
-        </span>
-      </div>
-    </nav>
-
-    <main>
-      <iframe id="viewer" src="Montaje_PLD.pdf" title="Visualizador de PDF"></iframe>
-    </main>
-
-  </section>
-
-  <footer>
-    © Ian Gross Sánchez — Repositorio académico personal
-  </footer>
+    <footer>© Ian Gross Sánchez — Portafolio personal</footer>
 
 </div>
 
-<script>
-  const summaries = {
-    "Montaje_PLD.pdf": {
-      title: "Montaje de Sistema PLD",
-      text: "Montaje experimental Pulsed Laser Deposition para la síntesis de películas delgadas ferromagnéticas. Se realizó la alineación y caracterización de láser infrarrojo, junto con la puesta en funcionamiento de una cámara de vacío. Se llevó a cabo una deposición preliminar de YIG sobre sustratos sólidos con respuesta magnética, verificada mediante mediciones MOKE."
-    },
-    "Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf": {
-      title: "Análisis Vibracional y Rotacional del Hidrógeno Diatómico",
-      text: "Modelo de enlace para la molécula de hidrógeno mediante simulaciones de Density Functional Theory basados en mecánica cuántica. Se describen los estados de vibración y rotación, mostrando buena concordancia con la literatura y destacando su utilidad como marco introductorio para sistemas moleculares simples."
-    },
-    "Chasis_CubeSat.pdf": {
-      title: "Diseño de Chasis para CubeSat 3U",
-      text: "Diseño estructural de un chasis CubeSat 3U mediante optimización topológica y fabricado mediante manufactura aditiva Selective Laser Melting. Compatible con estándares internacionales de lanzamiento, sistemas deployer y condiciones de operación en ambiente orbital."
-    },
-    "Simulacion_Chasis_CubeSat.pdf": {
-      title: "Simulación Mecánica Chasis CubeSat",
-      text: "Análisis estructural de un chasis CubeSat 3U considerando aceleraciones lineales, expansión térmica y respuesta vibracional, incluyendo vibraciones inducidas por el lanzamiento y excitaciones aleatorias representativas del entorno dinámico del cohete. Los resultados validan la integridad mecánica bajo condiciones operacionales realistas."
-    },
-    "Prediccion_Afinacion_de_Parches_de_Tambor.pdf": {
-      title: "Afinación de Parche de Tambor",
-      text: "Desarrollo de un modelo de red neuronal que relaciona la tensión de los pernos de afinación con el perfil acústico de un tambor. Se estudia un floor tom con un parche superior uniformemente tenso, estableciendo la base para un sistema de afinación de batería."
-    }
-  };
 
-  function showPDF(btn, filename){
-    document.getElementById('viewer').src = filename;
+    <script>
+        function showSection(id) {
+            document.querySelectorAll('.section-item').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.subnav').forEach(s => s.style.display = 'none');
+            document.getElementById(id).style.display = 'block';
+            document.querySelector(`.section-item[onclick*="${id}"]`).classList.add('active');
+        }
 
-    document.querySelectorAll('.nav-item')
-      .forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+        const summaries = {
+            "Montaje_PLD.pdf": {
+                title: "Montaje de Sistema PLD",
+                text: "Montaje experimental Pulsed Laser Deposition para la síntesis de películas delgadas ferromagnéticas..."
+            },
+            "Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf": {
+                title: "Análisis Vibracional y Rotacional del Hidrógeno Diatómico",
+                text: "Modelo de enlace para la molécula de hidrógeno mediante simulaciones de Density Functional Theory..."
+            },
+            "Chasis_CubeSat.pdf": {
+                title: "Diseño de Chasis para CubeSat 3U",
+                text: "Diseño estructural de un chasis CubeSat 3U mediante optimización topológica y manufactura aditiva..."
+            },
+            "Simulacion_Chasis_CubeSat.pdf": {
+                title: "Simulación Mecánica Chasis CubeSat",
+                text: "Análisis estructural de un chasis CubeSat 3U considerando aceleraciones lineales y respuesta vibracional..."
+            },
+            "Prediccion_Afinacion_de_Parches_de_Tambor.pdf": {
+                title: "Afinación de Parche de Tambor",
+                text: "Desarrollo de un modelo de red neuronal que relaciona la tensión de los pernos con el perfil acústico de un tambor..."
+            }
+        };
 
-    const s = summaries[filename];
-    if(s){
-      document.getElementById('doc-title').textContent = s.title;
-      document.getElementById('doc-text').textContent = s.text;
-    }
+        function showPDF(btn, filename) {
+            document.getElementById('viewer').src = filename;
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const s = summaries[filename];
+            if (s) {
+                document.getElementById('doc-title').textContent = s.title;
+                document.getElementById('doc-text').textContent = s.text;
+            }
+            location.hash = encodeURIComponent(filename);
+        }
 
-    location.hash = encodeURIComponent(filename);
-  }
+        function showCode(repo) {
+            document.getElementById('viewer').src = repo + ".html"; // ejemplo de mostrar README o página HTML
+            document.getElementById('doc-title').textContent = repo;
+            document.getElementById('doc-text').textContent = "Repositorio de código en GitHub: " + repo;
+            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+        }
 
-  (function(){
-    const h = decodeURIComponent((location.hash || '').slice(1));
-    if(!h || !summaries[h]) return;
-
-    document.getElementById('viewer').src = h;
-    document.getElementById('doc-title').textContent = summaries[h].title;
-    document.getElementById('doc-text').textContent = summaries[h].text;
-
-    document.querySelectorAll('.nav-item').forEach(b=>{
-      if(b.onclick.toString().includes(h)) b.classList.add('active');
-    });
-  })();
-</script>
+        (function() {
+            const h = decodeURIComponent((location.hash || '').slice(1));
+            if (!h) return;
+            if (summaries[h]) {
+                document.getElementById('viewer').src = h;
+                document.getElementById('doc-title').textContent = summaries[h].title;
+                document.getElementById('doc-text').textContent = summaries[h].text;
+            }
+        })();
+    </script>
 
 </body>
+
 </html>
