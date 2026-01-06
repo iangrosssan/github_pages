@@ -316,52 +316,38 @@
             document.getElementById('viewer').src = filename;
             document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+
             const s = summaries[filename];
             if (s) {
                 document.getElementById('doc-title').textContent = s.title;
                 document.getElementById('doc-text').textContent = s.text;
             }
+
             location.hash = encodeURIComponent(filename);
         }
 
-        function showCode(repoId, event) {
+        const repos = {
+            Repo1: {
+                title: 'Spotify Sorter',
+                text: 'Herramienta para organizar playlists de Spotify.',
+                repo: 'iangrosssan/Sorter-Spotify'
+            },
+            Repo2: {
+                title: 'Herramientas de Mecánico',
+                text: 'Utilidades de cálculo y automatización mecánica.',
+                repo: 'iangrosssan/Herramientas_de_Mecanico'
+            },
+            Repo3: {
+                title: 'Controlador Montaje PLD',
+                text: 'Código de control para sistemas PLD.',
+                repo: 'iangrosssan/Controlador_Montaje_PLD'
+            }
+        };
 
-            // activar estado visual solo en subnav código
+        function showCode(repoId, event) {
             document.querySelectorAll('#codigo .nav-item')
                 .forEach(b => b.classList.remove('active'));
             event.currentTarget.classList.add('active');
-
-            const repos = {
-                Repo1: {
-                    title: 'Spotify Sorter',
-                    text: 'Herramienta para organizar playlists de Spotify.',
-                    url: 'https://raw.githubusercontent.com/iangrosssan/Sorter-Spotify/main/README.md'
-                },
-                Repo2: {
-                    title: 'Herramientas de Mecánico',
-                    text: 'Utilidades de cálculo y automatización mecánica.',
-                    url: 'https://raw.githubusercontent.com/iangrosssan/Herramientas_de_Mecanico/main/README.md'
-                },
-                Repo3: {
-                    title: 'Controlador Montaje PLD',
-                    text: 'Código de control para sistemas PLD.',
-                    url: 'https://raw.githubusercontent.com/iangrosssan/Controlador_Montaje_PLD/main/README.md'
-                }
-            };
-            
-
-            (function() {
-                const h = decodeURIComponent((location.hash || '').slice(1));
-                if (!h) return;
-
-                if (summaries[h]) return; // ya manejado por académico
-
-                const fakeEvent = {
-                    currentTarget: document.querySelector(`#codigo button[onclick*="${h}"]`)
-                };
-                if (fakeEvent.currentTarget) showCode(h, fakeEvent);
-            })();
-            
 
             const r = repos[repoId];
             if (!r) return;
@@ -370,11 +356,32 @@
             document.getElementById('doc-text').textContent = r.text;
 
             document.getElementById('viewer').src =
-                'https://htmlpreview.github.io/?' + r.url;
+                `repo-viewer.html#${encodeURIComponent(r.repo)}`;
 
             location.hash = repoId;
         }
+
+        /* hash restore on reload */
+        (function() {
+            const h = decodeURIComponent((location.hash || '').slice(1));
+            if (!h) return;
+
+            if (summaries[h]) {
+                const btn = document.querySelector(`button[onclick*="${h}"]`);
+                if (btn) showPDF(btn, h);
+                return;
+            }
+
+            if (repos[h]) {
+                showSection('codigo');
+                const btn = document.querySelector(`#codigo button[onclick*="${h}"]`);
+                if (btn) showCode(h, {
+                    currentTarget: btn
+                });
+            }
+        })();
     </script>
+
 
 </body>
 
