@@ -203,79 +203,82 @@
 
 <body>
 
-<div class="page">
+    <div class="page">
 
-    <header>
-        <h1>Portafolio</h1>
-        <p class="lead">Colección de proyectos académicos y repositorios de código.</p>
-        <div class="author">Ian Gross Sánchez — Ingeniero Civil Mecánico · Ingeniero Físico · Matemático Aplicado</div>
-    </header>
+        <header>
+            <h1>Portafolio</h1>
+            <p class="lead">Colección de proyectos académicos y repositorios de código.</p>
+            <div class="author">Ian Gross Sánchez — Ingeniero Civil Mecánico · Ingeniero Físico · Matemático Aplicado</div>
+        </header>
 
-    <section class="layout">
+        <section class="layout">
 
-        <!-- Secciones del Portafolio -->
-        <div style="display:flex; gap:1rem; margin-bottom:1rem;">
-            <button class="section-item active" onclick="showSection('academico')">Repositorio Académico</button>
-            <button class="section-item" onclick="showSection('codigo')">Repositorio de Código</button>
-        </div>
-
-        <nav>
-            <!-- Submenú Repositorio Académico -->
-            <div id="academico" class="subnav">
-                <button class="nav-item active" onclick="showPDF(this,'Montaje_PLD.pdf')">
-                    Montaje de Sistema PLD
-                    <span class="tag">Experimental</span>
-                    <span class="tag">Óptica</span>
-                    <span class="tag">Ferromagnético</span>
-                </button>
-                <button class="nav-item" onclick="showPDF(this,'Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf')">
-                    Análisis Vibracional y Rotacional del Hidrógeno Diatómico
-                    <span class="tag">Molecular</span>
-                    <span class="tag">Orca</span>
-                    <span class="tag">DFT</span>
-                </button>
-                <button class="nav-item" onclick="showPDF(this,'Chasis_CubeSat.pdf')">
-                    Diseño de Chasis para CubeSat 3U
-                    <span class="tag">Aeroespacial</span>
-                    <span class="tag">Optimización</span>
-                </button>
-                <button class="nav-item" onclick="showPDF(this,'Simulacion_Chasis_CubeSat.pdf')">
-                    Simulación Mecánica Chasis CubeSat
-                    <span class="tag">Estructural</span>
-                    <span class="tag">CAE</span>
-                    <span class="tag">Simcenter 3D</span>
-                </button>
-                <button class="nav-item" onclick="showPDF(this,'Prediccion_Afinacion_de_Parches_de_Tambor.pdf')">
-                    Afinación de Parche de Tambor
-                    <span class="tag">Acústica</span>
-                    <span class="tag">Machine Learning</span>
-                    <span class="tag">TensorFlow</span>
-                </button>
-            </div>
-            <!-- Submenú Repositorio de Código -->
-            <div id="codigo" class="subnav" style="display:none;">
-                <button class="nav-item" onclick="showCode('Repo1')">Spotify Sorter</button>
-                <button class="nav-item" onclick="showCode('Repo2')">Herramientas de Mecánico</button>
-                <button class="nav-item" onclick="showCode('Repo3')">Montaje Controlador PLD</button>
+            <!-- Secciones del Portafolio -->
+            <div style="display:flex; gap:1rem; margin-bottom:1rem;">
+                <button class="section-item active" onclick="showSection('academico')">Repositorio Académico</button>
+                <button class="section-item" onclick="showSection('codigo')">Repositorio de Código</button>
             </div>
 
-            <!-- Bloque único de Resumen -->
-            <div class="doc-summary" id="doc-summary">
-                <strong>Resumen Documento</strong>
-                <em id="doc-title">Montaje PLD</em>
-                <span id="doc-text">Montaje experimental Pulsed Laser Deposition para la síntesis de películas delgadas ferromagnéticas...</span>
-            </div>
-        </nav>
+            <nav>
 
-        <main>
-            <iframe id="viewer" src="Montaje_PLD.pdf" title="Visualizador de PDF"></iframe>
-        </main>
+                <!-- Submenú Repositorio Académico -->
+                <div id="academico" class="subnav">
+                    <button class="nav-item active" onclick="showPDF(this,'Montaje_PLD.pdf')">
+                        Montaje de Sistema PLD
+                        <span class="tag">Experimental</span>
+                        <span class="tag">Óptica</span>
+                        <span class="tag">Ferromagnético</span>
+                    </button>
+                    <button class="nav-item" onclick="showPDF(this,'Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf')">
+                        Análisis Vibracional y Rotacional del Hidrógeno Diatómico
+                        <span class="tag">Molecular</span>
+                        <span class="tag">Orca</span>
+                        <span class="tag">DFT</span>
+                    </button>
+                    <button class="nav-item" onclick="showPDF(this,'Chasis_CubeSat.pdf')">
+                        Diseño de Chasis para CubeSat 3U
+                        <span class="tag">Aeroespacial</span>
+                        <span class="tag">Optimización</span>
+                    </button>
+                    <button class="nav-item" onclick="showPDF(this,'Simulacion_Chasis_CubeSat.pdf')">
+                        Simulación Mecánica Chasis CubeSat
+                        <span class="tag">Estructural</span>
+                        <span class="tag">CAE</span>
+                        <span class="tag">Simcenter 3D</span>
+                    </button>
+                    <button class="nav-item" onclick="showPDF(this,'Prediccion_Afinacion_de_Parches_de_Tambor.pdf')">
+                        Afinación de Parche de Tambor
+                        <span class="tag">Acústica</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">TensorFlow</span>
+                    </button>
+                </div>
 
-    </section>
+                <!-- Submenú Repositorio de Código -->
+                <div id="codigo" class="subnav" style="display:none;">
+                    <button class="nav-item" onclick="showCode('Repo1', event)">Spotify Sorter</button>
+                    <button class="nav-item" onclick="showCode('Repo2', event)">Herramientas de Mecánico</button>
+                    <button class="nav-item" onclick="showCode('Repo3', event)">Montaje Controlador PLD</button>
+                </div>
 
-    <footer>© Ian Gross Sánchez — Portafolio personal</footer>
 
-</div>
+                <!-- Bloque único de Resumen -->
+                <div class="doc-summary" id="doc-summary">
+                    <strong>Resumen Documento</strong>
+                    <em id="doc-title">Montaje PLD</em>
+                    <span id="doc-text">Montaje experimental Pulsed Laser Deposition para la síntesis de películas delgadas ferromagnéticas...</span>
+                </div>
+            </nav>
+
+            <main>
+                <iframe id="viewer" src="Montaje_PLD.pdf" title="Visualizador de PDF"></iframe>
+            </main>
+
+        </section>
+
+        <footer>© Ian Gross Sánchez — Portafolio personal</footer>
+
+    </div>
 
 
     <script>
@@ -321,57 +324,56 @@
             location.hash = encodeURIComponent(filename);
         }
 
-        function showCode(repo) {
-            document.getElementById('viewer').src = repo + ".html"; // ejemplo de mostrar README o página HTML
-            document.getElementById('doc-title').textContent = repo;
-            document.getElementById('doc-text').textContent = "Repositorio de código en GitHub: " + repo;
-            document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+        function showCode(repoId, event) {
+
+            // activar estado visual solo en subnav código
+            document.querySelectorAll('#codigo .nav-item')
+                .forEach(b => b.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+
+            const repos = {
+                Repo1: {
+                    title: 'Spotify Sorter',
+                    text: 'Herramienta para organizar playlists de Spotify.',
+                    url: 'https://raw.githubusercontent.com/iangrosssan/Sorter-Spotify/main/README.md'
+                },
+                Repo2: {
+                    title: 'Herramientas de Mecánico',
+                    text: 'Utilidades de cálculo y automatización mecánica.',
+                    url: 'https://raw.githubusercontent.com/iangrosssan/Herramientas_de_Mecanico/main/README.md'
+                },
+                Repo3: {
+                    title: 'Controlador Montaje PLD',
+                    text: 'Código de control para sistemas PLD.',
+                    url: 'https://raw.githubusercontent.com/iangrosssan/Controlador_Montaje_PLD/main/README.md'
+                }
+            };
+            
+
+            (function() {
+                const h = decodeURIComponent((location.hash || '').slice(1));
+                if (!h) return;
+
+                if (summaries[h]) return; // ya manejado por académico
+
+                const fakeEvent = {
+                    currentTarget: document.querySelector(`#codigo button[onclick*="${h}"]`)
+                };
+                if (fakeEvent.currentTarget) showCode(h, fakeEvent);
+            })();
+            
+
+            const r = repos[repoId];
+            if (!r) return;
+
+            document.getElementById('doc-title').textContent = r.title;
+            document.getElementById('doc-text').textContent = r.text;
+
+            document.getElementById('viewer').src =
+                'https://htmlpreview.github.io/?' + r.url;
+
+            location.hash = repoId;
         }
-
-        (function() {
-            const h = decodeURIComponent((location.hash || '').slice(1));
-            if (!h) return;
-            if (summaries[h]) {
-                document.getElementById('viewer').src = h;
-                document.getElementById('doc-title').textContent = summaries[h].title;
-                document.getElementById('doc-text').textContent = summaries[h].text;
-            }
-        })();
-        
-        // LÍNEA ~145 — REEMPLAZAR showCode COMPLETA
-function showCode(repoId) {
-
-    // activar estado visual solo en subnav código
-    document.querySelectorAll('#codigo .nav-item')
-        .forEach(b => b.classList.remove('active'));
-    event.currentTarget.classList.add('active');
-
-    const repos = {
-        Repo1: {
-            title: 'Spotify Sorter',
-            text: 'Herramienta para organizar playlists de Spotify.',
-            url: 'https://raw.githubusercontent.com/iangrosssan/Sorter-Spotify/main/README.md'
-        },
-        Repo2: {
-            title: 'Herramientas de Mecánico',
-            text: 'Utilidades de cálculo y automatización mecánica.',
-            url: 'https://raw.githubusercontent.com/iangrosssan/Herramientas_de_Mecanico/main/README.md'
-        },
-        Repo3: {
-            title: 'Controlador Montaje PLD',
-            text: 'Código de control para sistemas PLD.',
-            url: 'https://raw.githubusercontent.com/iangrosssan/Controlador_Montaje_PLD/main/README.md'
-        }
-    };
-
-    const r = repos[repoId];
-    document.getElementById('doc-title').textContent = r.title;
-    document.getElementById('doc-text').textContent = r.text;
-
-    document.getElementById('viewer').src =
-        'https://htmlpreview.github.io/?' + r.url;
-}
-
     </script>
 
 </body>
