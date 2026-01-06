@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Repository Viewer</title>
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.4.0/github-markdown.min.css">
+
+<style>
+body {
+    margin: 0;
+    padding: 1.2rem;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
+    background: #ffffff;
+}
+
+.header {
+    margin-bottom: 1rem;
+    padding-bottom: .75rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.header h1 {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.header a {
+    color: #0b6efd;
+    text-decoration: none;
+}
+
+.header a:hover {
+    text-decoration: underline;
+}
+
+.markdown-body {
+    max-width: 100%;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">
+    <h1><a id="repo-link" target="_blank"></a></h1>
+</div>
+
+<article class="markdown-body" id="content">
+    Cargando README…
+</article>
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<script>
+const repo = decodeURIComponent(location.hash.slice(1));
+if (!repo) {
+    document.getElementById('content').textContent = 'Repositorio no especificado.';
+} else {
+    const repoURL = `https://github.com/${repo}`;
+    const readmeURL = `https://raw.githubusercontent.com/${repo}/main/README.md`;
+
+    document.getElementById('repo-link').href = repoURL;
+    document.getElementById('repo-link').textContent = repo;
+
+    fetch(readmeURL)
+        .then(r => r.text())
+        .then(md => {
+            document.getElementById('content').innerHTML = marked.parse(md);
+        })
+        .catch(() => {
+            document.getElementById('content').textContent =
+                'No se pudo cargar el README.md';
+        });
+}
+</script>
+
+</body>
+</html>
