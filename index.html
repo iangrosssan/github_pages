@@ -252,7 +252,6 @@
                     <span class="tag">TensorFlow</span>
                 </button>
             </div>
-
             <!-- Submenú Repositorio de Código -->
             <div id="codigo" class="subnav" style="display:none;">
                 <button class="nav-item" onclick="showCode('Repo1')">Spotify Sorter</button>
@@ -338,6 +337,41 @@
                 document.getElementById('doc-text').textContent = summaries[h].text;
             }
         })();
+        
+        // LÍNEA ~145 — REEMPLAZAR showCode COMPLETA
+function showCode(repoId) {
+
+    // activar estado visual solo en subnav código
+    document.querySelectorAll('#codigo .nav-item')
+        .forEach(b => b.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+
+    const repos = {
+        Repo1: {
+            title: 'Spotify Sorter',
+            text: 'Herramienta para organizar playlists de Spotify.',
+            url: 'https://raw.githubusercontent.com/iangrosssan/Sorter-Spotify/main/README.md'
+        },
+        Repo2: {
+            title: 'Herramientas de Mecánico',
+            text: 'Utilidades de cálculo y automatización mecánica.',
+            url: 'https://raw.githubusercontent.com/iangrosssan/Herramientas_de_Mecanico/main/README.md'
+        },
+        Repo3: {
+            title: 'Controlador Montaje PLD',
+            text: 'Código de control para sistemas PLD.',
+            url: 'https://raw.githubusercontent.com/iangrosssan/Controlador_Montaje_PLD/main/README.md'
+        }
+    };
+
+    const r = repos[repoId];
+    document.getElementById('doc-title').textContent = r.title;
+    document.getElementById('doc-text').textContent = r.text;
+
+    document.getElementById('viewer').src =
+        'https://htmlpreview.github.io/?' + r.url;
+}
+
     </script>
 
 </body>
