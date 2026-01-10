@@ -1,5 +1,3 @@
-console.log('app.js loaded');
-
 function showSection(id) {
     document.querySelectorAll('.section-item')
         .forEach(b => b.classList.remove('active'));
