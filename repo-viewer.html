@@ -56,27 +56,44 @@ body {
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <script>
-const repo = decodeURIComponent(location.hash.slice(1));
-if (!repo) {
-    document.getElementById('content').textContent = 'Repositorio no especificado.';
-} else {
+/* line 1 */
+function loadRepo() {
+    const repo = decodeURIComponent(location.hash.slice(1));
+    const content = document.getElementById('content');
+    const link = document.getElementById('repo-link');
+
+    if (!repo) {
+        content.textContent = 'Repositorio no especificado.';
+        link.textContent = '';
+        link.removeAttribute('href');
+        return;
+    }
+
     const repoURL = `https://github.com/${repo}`;
     const readmeURL = `https://raw.githubusercontent.com/${repo}/main/README.md`;
 
-    document.getElementById('repo-link').href = repoURL;
-    document.getElementById('repo-link').textContent = repo;
+    link.href = repoURL;
+    link.textContent = repo;
+
+    content.textContent = 'Cargando README…';
 
     fetch(readmeURL)
-        .then(r => r.text())
+        .then(r => {
+            if (!r.ok) throw new Error();
+            return r.text();
+        })
         .then(md => {
-            document.getElementById('content').innerHTML = marked.parse(md);
+            content.innerHTML = marked.parse(md);
         })
         .catch(() => {
-            document.getElementById('content').textContent =
-                'No se pudo cargar el README.md';
+            content.textContent = 'No se pudo cargar el README.md';
         });
 }
+
+window.addEventListener('DOMContentLoaded', loadRepo);
+window.addEventListener('hashchange', loadRepo);
 </script>
+
 
 </body>
 </html>
