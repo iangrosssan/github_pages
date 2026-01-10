@@ -233,30 +233,30 @@
 
                 <!-- Submenú Repositorio Académico -->
                 <div id="academico" class="subnav">
-                    <button class="nav-item" onclick="showPDF(this,'Chasis_CubeSat.pdf')">
+                    <button class="nav-item" onclick="showPDF(this,'academico/Chasis_CubeSat.pdf')">
                         Diseño de Chasis para CubeSat 3U
                         <span class="tag">Aeroespacial</span>
                         <span class="tag">Optimización</span>
                     </button>
-                    <button class="nav-item" onclick="showPDF(this,'Simulacion_Chasis_CubeSat.pdf')">
+                    <button class="nav-item" onclick="showPDF(this,'academico/Simulacion_Chasis_CubeSat.pdf')">
                         Simulación Mecánica Chasis CubeSat
                         <span class="tag">Estructural</span>
                         <span class="tag">CAE</span>
                         <span class="tag">Simcenter 3D</span>
                     </button>
-                    <button class="nav-item active" onclick="showPDF(this,'Montaje_PLD.pdf')">
+                    <button class="nav-item active" onclick="showPDF(this,'academico/Montaje_PLD.pdf')">
                         Montaje de Sistema PLD
                         <span class="tag">Experimental</span>
                         <span class="tag">Óptica</span>
                         <span class="tag">Ferromagnético</span>
                     </button>
-                    <button class="nav-item" onclick="showPDF(this,'Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf')">
+                    <button class="nav-item" onclick="showPDF(this,'academico/Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf')">
                         Análisis Vibracional y Rotacional del Hidrógeno Diatómico
                         <span class="tag">Molecular</span>
                         <span class="tag">Orca</span>
                         <span class="tag">DFT</span>
                     </button>
-                    <button class="nav-item" onclick="showPDF(this,'Prediccion_Afinacion_de_Parches_de_Tambor.pdf')">
+                    <button class="nav-item" onclick="showPDF(this,'academico/Prediccion_Afinacion_de_Parches_de_Tambor.pdf')">
                         Afinación de Parche de Tambor
                         <span class="tag">Acústica</span>
                         <span class="tag">Machine Learning</span>
@@ -281,7 +281,7 @@
             </nav>
 
             <main>
-                <iframe id="viewer" src="Montaje_PLD.pdf" title="Visualizador de PDF"></iframe>
+                <iframe id="viewer" src="academico/Montaje_PLD.pdf" title="Visualizador de PDF"></iframe>
             </main>
 
         </section>
@@ -314,23 +314,23 @@
 
 
         const summaries = {
-            "Montaje_PLD.pdf": {
+            "academico/Montaje_PLD.pdf": {
                 title: "Montaje de Sistema PLD",
                 text: "Montaje experimental Pulsed Laser Deposition para la síntesis de películas delgadas ferromagnéticas. Se realizó la alineación y caracterización de láser infrarrojo, junto con la puesta en funcionamiento de una cámara de vacío. Se llevó a cabo una deposición preliminar de YIG sobre sustratos sólidos con respuesta magnética, verificada mediante mediciones MOKE."
             },
-            "Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf": {
+            "academico/Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf": {
                 title: "Análisis Vibracional y Rotacional del Hidrógeno Diatómico",
                 text: "Modelo de enlace para la molécula de hidrógeno mediante simulaciones de Density Functional Theory basados en mecánica cuántica. Se describen los estados de vibración y rotación, mostrando buena concordancia con la literatura y destacando su utilidad como marco introductorio para sistemas moleculares simples."
             },
-            "Chasis_CubeSat.pdf": {
+            "academico/Chasis_CubeSat.pdf": {
                 title: "Diseño de Chasis para CubeSat 3U",
                 text: "Diseño estructural de un chasis CubeSat 3U mediante optimización topológica y fabricado mediante manufactura aditiva Selective Laser Melting. Compatible con estándares internacionales de lanzamiento, sistemas deployer y condiciones de operación en ambiente orbital."
             },
-            "Simulacion_Chasis_CubeSat.pdf": {
+            "academico/Simulacion_Chasis_CubeSat.pdf": {
                 title: "Simulación Mecánica Chasis CubeSat",
                 text: "Análisis estructural de un chasis CubeSat 3U considerando aceleraciones lineales, expansión térmica y respuesta vibracional, incluyendo vibraciones inducidas por el lanzamiento y excitaciones aleatorias representativas del entorno dinámico del cohete. Los resultados validan la integridad mecánica bajo condiciones operacionales realistas."
             },
-            "Prediccion_Afinacion_de_Parches_de_Tambor.pdf": {
+            "academico/Prediccion_Afinacion_de_Parches_de_Tambor.pdf": {
                 title: "Afinación de Parche de Tambor",
                 text: "Desarrollo de un modelo de red neuronal que relaciona la tensión de los pernos de afinación con el perfil acústico de un tambor. Se estudia un floor tom con un parche superior uniformemente tenso, estableciendo la base para un sistema de afinación de batería."
             }
@@ -379,12 +379,17 @@
             document.getElementById('doc-title').textContent = r.title;
             document.getElementById('doc-text').textContent = r.text;
 
-            document.getElementById('viewer').src =
-                `repo-viewer.html#${encodeURIComponent(r.repo)}`;
+            const viewer = document.getElementById('viewer');
+
+            /* fuerza recarga incluso si ya hay una instancia */
+            viewer.src = 'about:blank';
+
+            setTimeout(() => {
+                viewer.src = `repo-viewer.html#${encodeURIComponent(r.repo)}`;
+            }, 0);
 
             location.hash = repoId;
         }
-
         /* hash restore on reload */
         (function() {
             const h = decodeURIComponent((location.hash || '').slice(1));
