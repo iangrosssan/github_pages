@@ -115,3 +115,12 @@ function showCode(repoId, event) {
         });
     }
 })();
+
+(function () {
+    const el = document.getElementById('last-update');
+    if (!el) return;
+
+    const d = new Date(document.lastModified);
+    el.textContent =
+        `Última actualización: ${d.toLocaleDateString()} ${d.toLocaleTimeString()}`;
+})();
