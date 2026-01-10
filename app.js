@@ -84,20 +84,20 @@ function showCode(repoId, event) {
     const r = repos[repoId];
     if (!r) return;
 
-    lastRepo = repoId; // ← CLAVE
+    lastRepo = repoId;
 
     document.getElementById('doc-title').textContent = r.title;
     document.getElementById('doc-text').textContent = r.text;
 
     const viewer = document.getElementById('viewer');
 
-    viewer.src = 'about:blank';
-    setTimeout(() => {
-        viewer.src = `repo-viewer.html#${encodeURIComponent(r.repo)}`;
-    }, 0);
+    const cacheBuster = Date.now(); // ← clave
+    viewer.src =
+        `repo-viewer.html#${encodeURIComponent(r.repo)}&v=${cacheBuster}`;
 
     location.hash = repoId;
 }
+
 
 /* hash restore on reload */
 (function() {
