@@ -1,3 +1,5 @@
+let lastRepo = null;
+
 function showSection(id) {
     document.querySelectorAll('.section-item')
         .forEach(b => b.classList.remove('active'));
@@ -82,20 +84,21 @@ function showCode(repoId, event) {
     const r = repos[repoId];
     if (!r) return;
 
+    lastRepo = repoId; // ← CLAVE
+
     document.getElementById('doc-title').textContent = r.title;
     document.getElementById('doc-text').textContent = r.text;
 
     const viewer = document.getElementById('viewer');
 
-    /* fuerza recarga incluso si ya hay una instancia */
     viewer.src = 'about:blank';
-
     setTimeout(() => {
         viewer.src = `repo-viewer.html#${encodeURIComponent(r.repo)}`;
     }, 0);
 
     location.hash = repoId;
 }
+
 /* hash restore on reload */
 (function() {
     const h = decodeURIComponent((location.hash || '').slice(1));
