@@ -190,7 +190,20 @@ footer {
     margin-top: 2rem;
     font-size: .8rem;
     color: var(--muted);
-    text-align: center;
+
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+}
+
+footer .footer-center {
+    justify-self: center;
+}
+
+#last-update {
+    justify-self: end;
+    font-size: .7rem;
+    opacity: 0.7;
 }
 
 /* Responsive */
@@ -200,17 +213,5 @@ footer {
     }
 }
 
-#last-update {
-    position: fixed;
-    bottom: 0.75rem;
-    right: 0.75rem;
-    font-size: 0.7rem;
-    color: #64748b;
-    background: rgba(255,255,255,0.85);
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.4rem;
-    border: 1px solid #e2e8f0;
-    pointer-events: none;
-}
 
 
