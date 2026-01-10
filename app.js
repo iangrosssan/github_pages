@@ -123,7 +123,7 @@ window.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById('last-update');
     if (!el) return;
 
-    const d = new Date(document.lastModified);
+    const d = new Date();
     el.textContent =
-        `Última actualización: ${d.toLocaleDateString()} ${d.toLocaleTimeString()}`;
+        `Última actualización: ${d.toLocaleDateString()}`;
 });
