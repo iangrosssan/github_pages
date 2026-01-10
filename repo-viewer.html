@@ -58,7 +58,7 @@ body {
 <script>
 /* line 1 */
 function loadRepo() {
-    const repo = decodeURIComponent(location.hash.slice(1));
+    const repo = decodeURIComponent(location.hash.slice(1)).split('&')[0];
     const content = document.getElementById('content');
     const link = document.getElementById('repo-link');
 
