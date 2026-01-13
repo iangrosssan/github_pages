@@ -28,6 +28,12 @@ function showSection(id) {
     }
 }
 
+/* -------------------------
+   Mobile detection
+-------------------------- */
+function isMobile() {
+    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+}
 
 /* -------------------------
    PDF summaries
@@ -56,14 +62,18 @@ const summaries = {
 };
 
 function showPDF(btn, filename) {
+
+    if (isMobile()) {
+        window.open(filename, '_blank');
+        return;
+    }
+
     const viewer = document.getElementById('viewer');
-    if (!viewer) return;
+    viewer.src = filename;
 
     document.querySelectorAll('.nav-item')
         .forEach(b => b.classList.remove('active'));
-
     btn.classList.add('active');
-    viewer.src = filename;
 
     const s = summaries[filename];
     if (s) {
@@ -71,8 +81,9 @@ function showPDF(btn, filename) {
         document.getElementById('doc-text').textContent = s.text;
     }
 
-    history.replaceState(null, '', `#${encodeURIComponent(filename)}`);
+    location.hash = encodeURIComponent(filename);
 }
+
 
 
 /* -------------------------
