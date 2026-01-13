@@ -2,33 +2,51 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<title>Repository Viewer</title>
+<title>Repositorio · Vista rápida</title>
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 
 <link rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.4.0/github-markdown.min.css">
 
 <style>
+:root {
+    --ink: #0f172a;
+    --muted: #64748b;
+    --border: #e2e8f0;
+    --bg-soft: #f8fafc;
+    --accent: #2563eb;
+}
+
 body {
     margin: 0;
     padding: 1.2rem;
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial;
     background: #ffffff;
+    color: var(--ink);
 }
 
 .header {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
     margin-bottom: 1rem;
     padding-bottom: .75rem;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border);
+}
+
+.header small {
+    color: var(--muted);
+    font-size: .75rem;
 }
 
 .header h1 {
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     margin: 0;
+    line-height: 1.2;
 }
 
 .header a {
-    color: #0b6efd;
+    color: var(--accent);
     text-decoration: none;
 }
 
@@ -36,36 +54,64 @@ body {
     text-decoration: underline;
 }
 
+.status {
+    font-size: .85rem;
+    color: var(--muted);
+    background: var(--bg-soft);
+    border: 1px dashed var(--border);
+    border-radius: .5rem;
+    padding: .6rem .8rem;
+}
+
 .markdown-body {
     max-width: 100%;
 }
 
+/* Improve markdown readability inside iframe */
+.markdown-body h1,
+.markdown-body h2 {
+    border-bottom: 1px solid var(--border);
+    padding-bottom: .25rem;
+}
+
+.markdown-body pre {
+    background: #0b1020;
+}
+
+.markdown-body code {
+    background: #eef2ff;
+}
 </style>
 </head>
 
 <body>
 
 <div class="header">
-    <h1><a id="repo-link" target="_blank"></a></h1>
+    <small>Repositorio GitHub</small>
+    <h1>
+        <a id="repo-link" target="_blank" rel="noopener"></a>
+    </h1>
 </div>
 
 <article class="markdown-body" id="content">
-    Cargando README…
+    <div class="status">Cargando README…</div>
 </article>
 
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 
 <script>
-/* line 1 */
 function loadRepo() {
-    const repo = decodeURIComponent(location.hash.slice(1)).split('&')[0];
+    const raw = decodeURIComponent(location.hash.slice(1));
+    const repo = raw.split('&')[0];
+
     const content = document.getElementById('content');
     const link = document.getElementById('repo-link');
 
     if (!repo) {
-        content.textContent = 'Repositorio no especificado.';
         link.textContent = '';
         link.removeAttribute('href');
+        content.innerHTML =
+            '<div class="status">Repositorio no especificado.</div>';
         return;
     }
 
@@ -75,7 +121,8 @@ function loadRepo() {
     link.href = repoURL;
     link.textContent = repo;
 
-    content.textContent = 'Cargando README…';
+    content.innerHTML =
+        '<div class="status">Cargando README desde GitHub…</div>';
 
     fetch(readmeURL)
         .then(r => {
@@ -86,14 +133,18 @@ function loadRepo() {
             content.innerHTML = marked.parse(md);
         })
         .catch(() => {
-            content.textContent = 'No se pudo cargar el README.md';
+            content.innerHTML = `
+                <div class="status">
+                    No se pudo cargar <strong>README.md</strong>.<br>
+                    Ver repositorio directamente en
+                    <a href="${repoURL}" target="_blank">GitHub</a>.
+                </div>`;
         });
 }
 
 window.addEventListener('DOMContentLoaded', loadRepo);
 window.addEventListener('hashchange', loadRepo);
 </script>
-
 
 </body>
 </html>

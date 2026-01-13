@@ -1,26 +1,37 @@
 let lastRepo = null;
 
+/* -------------------------
+   Section navigation
+-------------------------- */
 function showSection(id) {
     document.querySelectorAll('.section-item')
         .forEach(b => b.classList.remove('active'));
+
     document.querySelectorAll('.subnav')
         .forEach(s => s.style.display = 'none');
 
-    document.getElementById(id).style.display = 'block';
-    document.querySelector(`.section-item[onclick*="${id}"]`)
-        .classList.add('active');
+    const section = document.getElementById(id);
+    if (!section) return;
+
+    section.style.display = 'block';
+
+    const sectionBtn = document.querySelector(
+        `.section-item[data-section="${id}"]`
+    );
+    if (sectionBtn) sectionBtn.classList.add('active');
 
     if (id === 'codigo' && lastRepo) {
         const btn = document.querySelector(
-            `#codigo button[onclick*="${lastRepo}"]`
+            `#codigo button[data-repo="${lastRepo}"]`
         );
-        if (btn) showCode(lastRepo, {
-            currentTarget: btn
-        });
+        if (btn) showCode(lastRepo, { currentTarget: btn });
     }
 }
 
 
+/* -------------------------
+   PDF summaries
+-------------------------- */
 const summaries = {
     "academico/Montaje_PLD.pdf": {
         title: "Montaje de Sistema PLD",
@@ -45,9 +56,14 @@ const summaries = {
 };
 
 function showPDF(btn, filename) {
-    document.getElementById('viewer').src = filename;
-    document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
+    const viewer = document.getElementById('viewer');
+    if (!viewer) return;
+
+    document.querySelectorAll('.nav-item')
+        .forEach(b => b.classList.remove('active'));
+
     btn.classList.add('active');
+    viewer.src = filename;
 
     const s = summaries[filename];
     if (s) {
@@ -55,9 +71,13 @@ function showPDF(btn, filename) {
         document.getElementById('doc-text').textContent = s.text;
     }
 
-    location.hash = encodeURIComponent(filename);
+    history.replaceState(null, '', `#${encodeURIComponent(filename)}`);
 }
 
+
+/* -------------------------
+   Repository viewer
+-------------------------- */
 const repos = {
     Repo1: {
         title: 'Spotify Sorter',
@@ -77,48 +97,56 @@ const repos = {
 };
 
 function showCode(repoId, event) {
-    document.querySelectorAll('#codigo .nav-item')
-        .forEach(b => b.classList.remove('active'));
-    event.currentTarget.classList.add('active');
-
     const r = repos[repoId];
     if (!r) return;
 
+    document.querySelectorAll('#codigo .nav-item')
+        .forEach(b => b.classList.remove('active'));
+
+    event.currentTarget.classList.add('active');
     lastRepo = repoId;
 
     document.getElementById('doc-title').textContent = r.title;
     document.getElementById('doc-text').textContent = r.text;
 
     const viewer = document.getElementById('viewer');
+    const cacheBuster = Date.now();
 
-    const cacheBuster = Date.now(); // ← clave
     viewer.src =
         `repo-viewer.html#${encodeURIComponent(r.repo)}&v=${cacheBuster}`;
 
-    location.hash = repoId;
+    history.replaceState(null, '', `#${repoId}`);
 }
 
 
-/* hash restore on reload */
-(function() {
-    const h = decodeURIComponent((location.hash || '').slice(1));
+/* -------------------------
+   Restore state on reload
+-------------------------- */
+(function restoreFromHash() {
+    const h = decodeURIComponent(location.hash.slice(1));
     if (!h) return;
 
     if (summaries[h]) {
-        const btn = document.querySelector(`button[onclick*="${h}"]`);
+        const btn = document.querySelector(
+            `button[data-pdf="${h}"]`
+        );
         if (btn) showPDF(btn, h);
         return;
     }
 
     if (repos[h]) {
         showSection('codigo');
-        const btn = document.querySelector(`#codigo button[onclick*="${h}"]`);
-        if (btn) showCode(h, {
-            currentTarget: btn
-        });
+        const btn = document.querySelector(
+            `#codigo button[data-repo="${h}"]`
+        );
+        if (btn) showCode(h, { currentTarget: btn });
     }
 })();
 
+
+/* -------------------------
+   Footer timestamp
+-------------------------- */
 window.addEventListener('DOMContentLoaded', () => {
     const el = document.getElementById('last-update');
     if (!el) return;
