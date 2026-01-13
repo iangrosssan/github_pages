@@ -15,45 +15,81 @@
         <header>
             <h1>Portafolio</h1>
             <p class="lead">Colección de proyectos académicos y repositorios de código.</p>
-            <div class="author">Ian Gross Sánchez — Ingeniero Civil Mecánico · Ingeniero Físico · Matemático Aplicado</div>
+            <div class="author">
+                Ian Gross Sánchez — Ingeniero Civil Mecánico · Ingeniero Físico · Matemático Aplicado
+            </div>
+
+            <!-- UI POLISH: action anchors -->
+            <div class="author" style="margin-top:.4rem;">
+                <a href="https://github.com/iangrosssan" target="_blank">GitHub</a> ·
+                <a href="CV_Ian_Gross_Sanchez.pdf" target="_blank">CV</a>
+            </div>
         </header>
 
         <section class="layout">
 
-            <!-- Secciones del Portafolio -->
-            <div style="display:flex; gap:1rem; margin-bottom:1rem;">
-                <button class="section-item active" onclick="showSection('academico')">Repositorio Académico</button>
-                <button class="section-item" onclick="showSection('codigo')">Repositorio de Código</button>
-            </div>
+            <!-- UI POLISH: mode selector -->
+            <nav aria-label="Selección de repositorio">
+                <strong style="font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:#64748b;">
+                    Selecciona un repositorio
+                </strong>
+
+                <div style="display:flex; gap:1rem; margin-top:.5rem;">
+                    <button class="section-item active"
+                        aria-current="true"
+                        onclick="showSection('academico')">
+                        Repositorio Académico
+                    </button>
+                    <button class="section-item"
+                        onclick="showSection('codigo')">
+                        Repositorio de Código
+                    </button>
+                </div>
+            </nav>
 
             <nav>
 
+                <!-- UI POLISH: selection cue -->
+                <strong style="font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:#64748b;">
+                    Selecciona un proyecto para visualizarlo
+                </strong>
+
                 <!-- Submenú Repositorio Académico -->
                 <div id="academico" class="subnav">
-                    <button class="nav-item active" onclick="showPDF(this,'academico/Chasis_CubeSat.pdf')">
+                    <button class="nav-item active"
+                        aria-current="true"
+                        onclick="showPDF(this,'academico/Chasis_CubeSat.pdf')">
                         Diseño de Chasis para CubeSat 3U
                         <span class="tag">Aeroespacial</span>
                         <span class="tag">Optimización</span>
                     </button>
-                    <button class="nav-item" onclick="showPDF(this,'academico/Simulacion_Chasis_CubeSat.pdf')">
+
+                    <button class="nav-item"
+                        onclick="showPDF(this,'academico/Simulacion_Chasis_CubeSat.pdf')">
                         Simulación Mecánica Chasis CubeSat
                         <span class="tag">Estructural</span>
                         <span class="tag">CAE</span>
                         <span class="tag">Simcenter 3D</span>
                     </button>
-                    <button class="nav-item" onclick="showPDF(this,'academico/Montaje_PLD.pdf')">
+
+                    <button class="nav-item"
+                        onclick="showPDF(this,'academico/Montaje_PLD.pdf')">
                         Montaje de Sistema PLD
                         <span class="tag">Experimental</span>
                         <span class="tag">Óptica</span>
                         <span class="tag">Ferromagnético</span>
                     </button>
-                    <button class="nav-item" onclick="showPDF(this,'academico/Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf')">
+
+                    <button class="nav-item"
+                        onclick="showPDF(this,'academico/Análisis_Vibracional_y_Rotacional_del_Hidrógeno_Diatómico.pdf')">
                         Análisis Vibracional y Rotacional del Hidrógeno Diatómico
                         <span class="tag">Molecular</span>
                         <span class="tag">Orca</span>
                         <span class="tag">DFT</span>
                     </button>
-                    <button class="nav-item" onclick="showPDF(this,'academico/Prediccion_Afinacion_de_Parches_de_Tambor.pdf')">
+
+                    <button class="nav-item"
+                        onclick="showPDF(this,'academico/Prediccion_Afinacion_de_Parches_de_Tambor.pdf')">
                         Afinación de Parche de Tambor
                         <span class="tag">Acústica</span>
                         <span class="tag">Machine Learning</span>
@@ -63,22 +99,40 @@
 
                 <!-- Submenú Repositorio de Código -->
                 <div id="codigo" class="subnav" style="display:none;">
-                    <button class="nav-item" onclick="showCode('Repo1', event)">Spotify Sorter</button>
-                    <button class="nav-item" onclick="showCode('Repo2', event)">Herramientas de Mecánico</button>
-                    <button class="nav-item" onclick="showCode('Repo3', event)">Montaje Controlador PLD</button>
+                    <button class="nav-item"
+                        onclick="showCode('Repo1', event)">
+                        Spotify Sorter
+                    </button>
+                    <button class="nav-item"
+                        onclick="showCode('Repo2', event)">
+                        Herramientas de Mecánico
+                    </button>
+                    <button class="nav-item"
+                        onclick="showCode('Repo3', event)">
+                        Montaje Controlador PLD
+                    </button>
                 </div>
 
-
-                <!-- Bloque único de Resumen -->
+                <!-- Resumen -->
                 <div class="doc-summary" id="doc-summary">
-                    <strong>Resumen Documento</strong>
+                    <strong>Resumen</strong>
                     <em id="doc-title">Diseño de Chasis para CubeSat 3U</em>
-                    <span id="doc-text">Diseño estructural de un chasis CubeSat 3U mediante optimización topológica y fabricado mediante manufactura aditiva Selective Laser Melting. Compatible con estándares internacionales de lanzamiento, sistemas deployer y condiciones de operación en ambiente orbital.</span>
+                    <span id="doc-text">
+                        Diseño estructural de un chasis CubeSat 3U mediante optimización topológica y manufactura aditiva.
+                    </span>
                 </div>
             </nav>
 
-            <main>
-                <iframe id="viewer" src="academico/Chasis_CubeSat.pdf" title="Visualizador de PDF"></iframe>
+            <!-- UI POLISH: destination clarity -->
+            <main aria-label="Vista previa">
+                <strong style="font-size:.7rem; letter-spacing:.08em; text-transform:uppercase; color:#64748b;">
+                    Vista previa del contenido
+                </strong>
+
+                <iframe id="viewer"
+                        src="academico/Chasis_CubeSat.pdf"
+                        title="Diseño de Chasis para CubeSat 3U">
+                </iframe>
             </main>
 
         </section>
@@ -89,11 +143,8 @@
             <span id="last-update"></span>
         </footer>
 
-
     </div>
 
 <script src="app.js"></script>
-
 </body>
-
 </html>
